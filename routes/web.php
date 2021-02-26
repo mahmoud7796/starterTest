@@ -13,10 +13,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
 
 Auth::routes(['verify'=>true]);
 
 Route::get('/home', 'HomeController@index')->name('home')->middleware('verified');
+Route::get('/', function () {
+    return view('welcome');
+});
+
+
+/*Route::get('/redirect/{service}','SocialiteController@redirect');
+Route::get('/callback/{service}','SocialiteController@callback');*/
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
