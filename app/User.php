@@ -16,7 +16,7 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $fillable = [
-        'name', 'email','mobile', 'password',
+        'name', 'email','mobile', 'password','expire'
     ];
 
     /**
@@ -36,4 +36,11 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function scopeExpire($query){
+        return $query -> where('expire', 0);
+    }
+    public function scopeEmail($query){
+        return $query -> pluck('email')->toArray();
+    }
 }
