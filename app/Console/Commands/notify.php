@@ -2,8 +2,10 @@
 
 namespace App\Console\Commands;
 
+use App\Mail\notifyEmail;
 use App\User;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Mail;
 
 class notify extends Command
 {
@@ -37,9 +39,11 @@ class notify extends Command
      * @return int
      */
     public function handle()
-    {
-       $emails = User::Email();
+    {//pluck('email')->toArray()
+       $emails = User::pluck('email')->toArray();
         foreach($emails as $email){
+            $content = ['title'=>'programing', 'subject'=>'php Laravel notify email test'];
+            Mail::To($email)->send(new notifyEmail($content));
 
         }
 

@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Offer;
 use Illuminate\Http\Request;
 
-class HomeController extends Controller
+class TestmodelController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -13,7 +14,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+
     }
 
     /**
@@ -21,8 +22,13 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function store()
     {
-        return view('home');
+         Offer::create([
+             'name' => 'mahmoud Diab test',
+             'price' => '500 L.E',
+             'details' => 'offer details',
+         ]);
+
     }
 }

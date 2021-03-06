@@ -16,9 +16,10 @@ class notifyEmail extends Mailable
      *
      * @return void
      */
-    public function __construct()
+    public $data;
+    public function __construct($content)
     {
-        //
+        $this -> data = $content;
     }
 
     /**
@@ -28,6 +29,6 @@ class notifyEmail extends Mailable
      */
     public function build()
     {
-        return $this->view('view.name');
+        return $this->view('emails.mailuser');
     }
 }

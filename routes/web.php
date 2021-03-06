@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,6 +26,13 @@ Route::get('/', function () {
 
 /*Route::get('/redirect/{service}','SocialiteController@redirect');
 Route::get('/callback/{service}','SocialiteController@callback');*/
-Auth::routes();
+
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/data', 'TestmodelController@retrieveData');
+
+Route::group(['prefix'=>'offers'], function(){
+    Route::get('/store', 'TestmodelController@store');
+
+
+});
