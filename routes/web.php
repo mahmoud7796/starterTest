@@ -32,6 +32,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/data', 'TestmodelController@retrieveData');
 
 Route::group(['prefix'=>'offers'], function(){
-    Route::get('/store', 'TestmodelController@store');
+    Route::post('/store', 'TestmodelController@store')-> name('offers.store');
+    Route::get('create','TestmodelController@create')-> name('offers.create');
 
 });
