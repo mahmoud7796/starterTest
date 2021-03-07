@@ -26,8 +26,12 @@ class TestmodelController extends Controller
     public function store(OffersRequest $request)
     {
 
+      //  return redirect()->back()->withErrors()->withInput()($request->all());
+
       Offer::create($request -> except(['_token']));
-      return "success";
+
+        return redirect()->back()->with(['success'=>'تم الحفظ بنجاح ف الداتا بيز']);
+
 
 
     }

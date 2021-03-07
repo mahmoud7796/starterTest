@@ -33,11 +33,11 @@ class OffersRequest extends FormRequest
     public function messages()
     {
         return [
-      /*      'numeric' => 'لابد من إدخال أرقام فقط',
-            'required' => 'هذا الحقل مطلوب',
-            'string' => ' لابد ان يكون احرف',
-            'name.max' => 'الإسم لابد الا يزيد عن 200 احرف ',
-            'details.max' => 'التفاصيل لابد الا تزيد عن 200 احرف ',*/
+           'numeric' => __('messages.numeric val'),
+            'required' => __('messages.required val'),
+            'string' => __('messages.string val'),
+            'name.max' => __('messages.name max val'),
+            'details.max' => __('messages.details max val'),
         ];
     }
 }
