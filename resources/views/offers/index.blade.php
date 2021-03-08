@@ -88,64 +88,34 @@
             </form>
         </div>
     </nav>
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
+    <table class="table">
+    <thead>
+    <tr>
+        <th scope="col">{{__('messages.create_name')}}</th>
+        <th scope="col">{{__('messages.create_price')}}</th>
+        <th scope="col">{{__('messages.create_details')}}</th>
+        <th scope="col">Actions</th>
+    </tr>
+    </thead>
+    <tbody>
 
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
-                        @endif
-                    @endauth
-                </div>
-            @endif
+        @foreach($offers as $offer)
+    <tr>
+        <td>{{$offer -> name}}</td>
+        <td>{{$offer -> price}}</td>
+        <td>{{$offer -> details}}</td>
+        <td>
+            <button type="button" action="" class="btn btn-outline-primary">Edit</button>
+            <button type="button" action="" class="btn btn-outline-danger">Delete</button>
 
-            <div class="content">
-                <div class="title m-b-md">
-                    {{__('messages.offer title')}}
-                </div>
-                @if(Session::has('success'))
-                <div class="alert alert-success" role="alert">
-                    {{Session::get('success')}}
+        </td>
 
-
-                </div>
-                @endif
-                <form class="needs-validation" novalidate method="POST" action="{{Route('offers.store')}}">
-                    @csrf
-
-                    <div class="form-group">
-                        <label for="Name">{{__('messages.create_name')}}</label>
-                        <input type="text" class="form-control" id="name" name="name" aria-describedby="emailHelp" placeholder="Enter name">
-                        @error('name')
-                        <span class="text-danger">{{$message}}</span>
-                        @enderror
-
-                    </div>
-                    <div class="form-group">
-                        <label for="price">{{__('messages.create_price')}}</label>
-                        <input type="text" class="form-control" id="price" name="price" placeholder="price here">
-                        @error('price')
-                        <span class="text-danger">{{$message}}</span>
-                        @enderror
-                    </div>
-                    <div class="form-group">
-                        <label for="details">{{__('messages.create_details')}}</label>
-                        <input type="text" class="form-control" id="details" name="details" placeholder="details here">
-                        @error('details')
-                        <span class="text-danger">{{$message}}</span>
-                        @enderror
-                    </div>
-
-                    <button type="submit" class="btn btn-primary">create</button>
+    </tr>
+        @endforeach
 
 
-                </form>
 
-            </div>
-        </div>
+    </tbody>
+    </table>
     </body>
 </html>

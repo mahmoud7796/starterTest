@@ -18,5 +18,11 @@ return [
     'string val' => 'حروف فقط',
     'name max val' => 'مينفعش يزيد عن 200 حرف',
     'details max val' => "مينفعش يزيد عن 300",
+    'offer title' => "أضف العرض",
+    'create_price' => "السعر",
+    'create_name' => "اسم العرص",
+    'create_details' => "تفاصيل العرض",
+
+
 
 ];

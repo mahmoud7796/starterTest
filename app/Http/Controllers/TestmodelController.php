@@ -32,11 +32,14 @@ class TestmodelController extends Controller
 
         return redirect()->back()->with(['success'=>'تم الحفظ بنجاح ف الداتا بيز']);
 
-
-
     }
 
     public function create(){
         return view('offers.create');
+    }
+
+    public function index(){
+      $offers =  Offer::selection()->get();
+        return view('offers.index', compact('offers'));
     }
 }

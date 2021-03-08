@@ -18,5 +18,9 @@ return [
     'string val' => 'Only alphabit',
     'name max val' => 'do not increase 200 word',
     'details max val' => "do not increase 200 word",
+    'offer title' => "Add the offers",
+    'create_price' => "price",
+    'create_name' => "name",
+    'create_details' => "details",
 
 ];

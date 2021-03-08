@@ -38,6 +38,7 @@ Route::group(['prefix'=> LaravelLocalization::setLocale(),
 Route::group(['prefix'=>'offers'], function(){
     Route::get('create','TestmodelController@create')-> name('offers.create');
     Route::post('/store', 'TestmodelController@store')-> name('offers.store');
+    Route::get('/index', 'TestmodelController@index')-> name('offers.index');
 
     });
 
