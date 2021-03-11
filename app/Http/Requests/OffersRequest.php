@@ -24,9 +24,12 @@ class OffersRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|string|max:200|',
+            'photo' => 'required|mimes:jpg,jpeg,png',
+            'name_ar' => 'required|string|max:200',
+            'name_en' => 'required|string|max:200|regex:/^[a-zA-Z0-9_ ]*$/',
             'price' => 'required|numeric|',
-            'details' => 'required|string|max:200|',
+            'details_ar' => 'required|string|max:200|',
+            'details_en' => 'required|string|max:200|',
         ];
     }
 

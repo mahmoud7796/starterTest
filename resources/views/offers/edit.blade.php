@@ -114,21 +114,12 @@
 
                 </div>
                 @endif
-                <form class="needs-validation" novalidate method="POST" action="{{Route('offers.store')}}"
-                      enctype="multipart/form-data">
-                      @csrf
-
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">أختر صورة العرض</label>
-                        <input type="file" class="form-control" name="photo">
-                        @error('photo')
-                        <small class="form-text text-danger">{{$message}}</small>
-                        @enderror
-                    </div>
+                <form class="needs-validation" novalidate method="POST" action="{{Route('offers.update',$offers->id)}}">
+                    @csrf
 
                     <div class="form-group">
                         <label for="Name">{{__('messages.create_name')}}</label>
-                        <input type="text" class="form-control" id="name" name="name_ar"  placeholder="Enter name">
+                        <input type="text" class="form-control" id="name" name="name_ar" value="{{$offers -> name_ar}}" placeholder="Enter name">
                         @error('name_ar')
                         <span class="text-danger">{{$message}}</span>
                         @enderror
@@ -137,7 +128,7 @@
 
                     <div class="form-group">
                         <label for="Name">{{__('messages.create_name_en')}}</label>
-                        <input type="text" class="form-control" id="name" name="name_en"  placeholder="Enter name">
+                        <input type="text" value="{{$offers -> name_en}}" class="form-control" id="name_en" name="name_en"  placeholder="Enter name">
                         @error('name_en')
                         <span class="text-danger">{{$message}}</span>
                         @enderror
@@ -145,14 +136,14 @@
                     </div>
                     <div class="form-group">
                         <label for="price">{{__('messages.create_price')}}</label>
-                        <input type="text" class="form-control" id="price" name="price" placeholder="price here">
+                        <input type="text" class="form-control" id="price" name="price" value="{{$offers -> price}}" placeholder="price here">
                         @error('price')
                         <span class="text-danger">{{$message}}</span>
                         @enderror
                     </div>
                     <div class="form-group">
                         <label for="details">{{__('messages.create_details')}}</label>
-                        <input type="text" class="form-control" id="details" name="details_ar" placeholder="details here">
+                        <input type="text" class="form-control" id="details" name="details_ar" value="{{$offers -> details_ar}}" placeholder="details here">
                         @error('details_ar')
                         <span class="text-danger">{{$message}}</span>
                         @enderror
@@ -160,13 +151,13 @@
 
                     <div class="form-group">
                         <label for="details">{{__('messages.create_details_en')}}</label>
-                        <input type="text" class="form-control" id="details" name="details_en" placeholder="details here">
+                        <input type="text" class="form-control" id="details" name="details_en" value="{{$offers -> details_en}}" placeholder="details here">
                         @error('details_en')
                         <span class="text-danger">{{$message}}</span>
                         @enderror
                     </div>
 
-                    <button type="submit" class="btn btn-primary">create</button>
+                    <button type="submit" class="btn btn-primary">Update</button>
 
 
                 </form>

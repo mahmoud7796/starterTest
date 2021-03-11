@@ -39,8 +39,14 @@ Route::group(['prefix'=>'offers'], function(){
     Route::get('create','TestmodelController@create')-> name('offers.create');
     Route::post('/store', 'TestmodelController@store')-> name('offers.store');
     Route::get('/index', 'TestmodelController@index')-> name('offers.index');
+    Route::get('/edit/{id}', 'TestmodelController@edit')-> name('offers.edit');
+    Route::post('/update/{id}', 'TestmodelController@update')-> name('offers.update');
+    Route::get('/delete/{id}', 'TestmodelController@delete')-> name('offers.delete');
 
-    });
+
+
+
+});
 
 
 });

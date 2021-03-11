@@ -5,9 +5,12 @@ namespace App\Http\Controllers;
 use App\Http\Requests\OffersRequest;
 use App\Models\Offer;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use App\Helpers\General;
 
 class TestmodelController extends Controller
 {
+    use General;
     /**
      * Create a new controller instance.
      *
@@ -21,18 +24,33 @@ class TestmodelController extends Controller
     /**
      * Show the application dashboard.
      *
-     * @return \Illuminate\Contracts\Support\Renderable
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(OffersRequest $request)
     {
 
       //  return redirect()->back()->withErrors()->withInput()($request->all());
 
-      Offer::create($request -> except(['_token']));
+       $file_name = $this ->saveImage($request -> photo,'images/offers');
 
-        return redirect()->back()->with(['success'=>'تم الحفظ بنجاح ف الداتا بيز']);
 
+     // Offer::create($request -> except(['_token']));
+        Offer::create([
+            'photo' => $file_name,
+            'name_ar' => $request -> name_ar,
+            'name_en' => $request -> name_en,
+            'details_ar' => $request -> details_ar,
+            'details_en' => $request -> details_en,
+            'price' => $request -> price,
+
+
+
+        ]);
+
+
+        return redirect()->route('offers.index')-> with(['success'=> 'تم الحفظ بنجاح يامعلم']);
     }
+
 
     public function create(){
         return view('offers.create');
@@ -42,4 +60,40 @@ class TestmodelController extends Controller
       $offers =  Offer::selection()->get();
         return view('offers.index', compact('offers'));
     }
+
+    public function edit($id){
+
+        $offers =  Offer::find($id);
+        if(!$offers)
+            return redirect()-> route('offers.index')-> with(['success'=> 'العرض دا مش موجود']);
+
+        $offers =  Offer::selection2()->get()->find($id);
+       return view('offers.edit', compact('offers'));
+    }
+
+    public function update($id, OffersRequest $request){
+      //  return $request;
+       $offers = Offer::find($id);
+        if(!$offers)
+            return redirect()-> route('offers.index')-> with(['success'=> 'العرض دا مش موجود']);
+        $offer = Offer::selection2()->get()->find($id);
+
+        $offer->update($request -> except(['_token']));
+        return redirect()-> route('offers.index')-> with(['success'=> 'تم التحديث']);
+
+    }
+
+    public  function delete($id){
+        $offers= Offer::find($id);
+        if (!$offers)
+            return redirect()-> route('offers.index')-> with(['success'=> 'العرض دا مش موجود']);
+        $offer = Offer::selection2()->get()->find($id);
+        $offer ->delete();
+        return redirect()-> route('offers.index')-> with(['success'=> 'تم الحذف']);
+
+
+
+    }
+
+
 }

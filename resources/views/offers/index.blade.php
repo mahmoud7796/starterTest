@@ -88,12 +88,21 @@
             </form>
         </div>
     </nav>
+
+    @if(Session::has('success'))
+        <div class="alert alert-success" role="alert">
+            {{Session::get('success')}}
+
+
+        </div>
+    @endif
     <table class="table">
     <thead>
     <tr>
-        <th scope="col">{{__('messages.create_name')}}</th>
+        <th scope="col">{{__('messages.index_name')}}</th>
         <th scope="col">{{__('messages.create_price')}}</th>
-        <th scope="col">{{__('messages.create_details')}}</th>
+        <th scope="col">{{__('messages.index_details')}}</th>
+        <th scope="col">Photo</th>
         <th scope="col">Actions</th>
     </tr>
     </thead>
@@ -104,9 +113,19 @@
         <td>{{$offer -> name}}</td>
         <td>{{$offer -> price}}</td>
         <td>{{$offer -> details}}</td>
+        <td>{{$offer -> photo}}</td>
         <td>
-            <button type="button" action="" class="btn btn-outline-primary">Edit</button>
-            <button type="button" action="" class="btn btn-outline-danger">Delete</button>
+            <div class="btn-group" role="group"
+                 aria-label="Basic example">
+                <a href="{{route('offers.edit', $offer -> id)}}"
+                   class="btn btn-outline-primary btn-min-width box-shadow-3 mr-1 mb-1">Edit</a>
+            </div>
+
+
+      <div class="btn-group" role="group"
+                 aria-label="Basic example">
+                <a class="btn btn-danger" onclick="return confirm('Are you sure you want to Delete this item?')" href="{{route('offers.delete', $offer->id)}}"><i class="fa fa-trash"></i>Delete</a>
+            </div>
 
         </td>
 
@@ -117,5 +136,9 @@
 
     </tbody>
     </table>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+    <script type="text/javascript" src="test.js"></script>
     </body>
 </html>

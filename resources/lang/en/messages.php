@@ -20,7 +20,11 @@ return [
     'details max val' => "do not increase 200 word",
     'offer title' => "Add the offers",
     'create_price' => "price",
-    'create_name' => "name",
-    'create_details' => "details",
+    'index_name' => "offer's name",
+    'index_details' => "details",
+    'create_name' => "offer's name in arabic",
+    'create_name_en' => "offer's name in english",
+    'create_details' => "offer's details in arabic",
+    'create_details_en' => "offer's details in english",
 
 ];

@@ -20,8 +20,12 @@ return [
     'details max val' => "مينفعش يزيد عن 300",
     'offer title' => "أضف العرض",
     'create_price' => "السعر",
-    'create_name' => "اسم العرص",
-    'create_details' => "تفاصيل العرض",
+    'index_name' => "اسم العرض",
+    'index_details' => "التفاصيل",
+    'create_name' => "اسم العرض باللغة العربية",
+    'create_name_en' => "اسم العرض باللغة الإنجليزية",
+    'create_details' => "تفاصيل العرض باللغة العربية",
+    'create_details_en' => "تفاصيل العرض باللغة الإنجليزية",
 
 
 
