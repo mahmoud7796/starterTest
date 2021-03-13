@@ -113,7 +113,7 @@
         <td>{{$offer -> name}}</td>
         <td>{{$offer -> price}}</td>
         <td>{{$offer -> details}}</td>
-        <td>{{$offer -> photo}}</td>
+        <td><img src="{{$offer -> photo}}" style="width: 100px;height: 100px;"></td>
         <td>
             <div class="btn-group" role="group"
                  aria-label="Basic example">

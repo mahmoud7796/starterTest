@@ -13,7 +13,7 @@ class Offer extends Model
     //public $timestamps = false;
 
     public function ScopeSelection($query){
-        return $query -> select('id','name_'. LaravelLocalization::getCurrentLocale()  . ' as name',
+        return $query -> select('id','photo','name_'. LaravelLocalization::getCurrentLocale()  . ' as name',
             'price','details_'.LaravelLocalization::getCurrentLocale() . ' as details',
             'created_at','updated_at');
 
@@ -21,6 +21,11 @@ class Offer extends Model
     public function ScopeSelection2($query){
         return $query -> select('id','photo','name_ar','name_en',
             'price','details_ar','details_en');
+
+    }
+    public function getPhotoAttribute($val){
+
+      return  ($val!==null) ? asset($val) : "";
 
     }
 
