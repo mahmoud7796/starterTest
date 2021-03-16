@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\AjaxController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,6 +19,8 @@ use Illuminate\Support\Facades\Route;
 Auth::routes(['verify'=>true]);
 
 Route::get('/home', 'HomeController@index')->name('home')->middleware('verified');
+Route::get('/first_time', 'TestmodelController@first_time');
+Route::get('/youtube', 'TestmodelController@youtube');
 Route::get('/', function () {
     return view('welcome');
 });
@@ -43,11 +45,19 @@ Route::group(['prefix'=>'offers'], function(){
     Route::post('/update/{id}', 'TestmodelController@update')-> name('offers.update');
     Route::get('/delete/{id}', 'TestmodelController@delete')-> name('offers.delete');
 
+});
 
 
 
 });
 
+####### Start AJAX ##############
+Route::group(['prefix'=>'offers-ajax'],function(){
+
+    Route::get('/create','AjaxController@create')-> name('ajax.offer.create');
+    Route::post('/store','AjaxController@store')-> name('ajax.offer.store');
 
 });
+####### End AJAX ##############
+
 
