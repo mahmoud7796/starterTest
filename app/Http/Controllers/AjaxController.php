@@ -27,8 +27,14 @@ class AjaxController extends Controller
         $file_name = $this->saveImage($request->photo, 'images/offers');
 
         // Offer::create($request -> except(['_token']));
-      $offer =  Offer::create([
-           'photo' => $file_name,
+
+/*        if($request->hasFile('photo')) {
+            $file_name = $this->saveImage($request->file('photo'), 'images/offers');
+            $request -> photo = $file_name;
+        }*/
+
+        $offer = Offer::create([
+            'photo' => $file_name,
             'name_ar' => $request->name_ar,
             'name_en' => $request->name_en,
             'details_ar' => $request->details_ar,
@@ -36,7 +42,6 @@ class AjaxController extends Controller
             'price' => $request->price,
 
         ]);
-
         if($offer)
         return response() -> json([
            'status' => true,
@@ -65,6 +70,56 @@ class AjaxController extends Controller
                 'status' => false,
                 'msg' => 'فشل البتنجان',
             ]);
+
+    }
+
+    public function edit($id)
+    {
+        $offers = Offer::find($id);
+        if(!$offers)
+        return response() -> json([
+            'status' => false,
+            'msg' => 'فشل البتنجان',
+        ]);
+        $offers = Offer::selection2()->find($id);
+        return view('offerajax.edit', compact('offers'));
+
+    }
+
+    public function update(OffersRequest $request)
+    {
+        //  return $request;
+        $offer = Offer::find($request -> edit_id);
+        if(!$offer)
+            return response() -> json([
+                'status' => false,
+                'msg' => 'فشل البتنجان',
+            ]);
+
+      //  $file_name = $this->saveImage($request->file('photo'), 'images/offers');
+      // save Photo
+        if($request->hasFile('photo')) {
+            $file_name = $this->saveImage($request->file('photo'), 'images/offers');
+            $request -> photo = $file_name;
+            $offer ->update([
+                'photo' => $file_name,
+            ]);
+        }
+        $offer ->update([
+            'name_ar' => $request->name_ar,
+            'name_en' => $request->name_en,
+            'details_ar' => $request->details_ar,
+            'details_en' => $request->details_en,
+            'price' => $request->price,
+        ]);
+
+        if($offer)
+            return response() -> json([
+                'status' => true,
+                'msg' => 'تم الحفظ يامعلم',
+                'id' => $request -> id,
+            ]);
+
 
     }
 

@@ -24,7 +24,7 @@
                 <td>
                     <div class="btn-group" role="group"
                          aria-label="Basic example">
-                        <a href="{{route('offers.edit', $offer -> id)}}"
+                        <a href="{{route('ajax.offer.edit',$offer -> id)}}"
                            class="btn btn-outline-primary btn-min-width box-shadow-3 mr-1 mb-1">Edit</a>
                     </div>
 

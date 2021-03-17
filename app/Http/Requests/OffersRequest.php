@@ -24,7 +24,7 @@ class OffersRequest extends FormRequest
     public function rules()
     {
         return [
-           'photo' => 'required|mimes:jpg,jpeg,png',
+           'photo' => 'required_without:id|mimes:jpg,jpeg,png',
             'name_ar' => 'required|string|max:200',
             'name_en' => 'required|string|max:200|regex:/^[a-zA-Z0-9_ ]*$/',
             'price' => 'required|numeric|',
