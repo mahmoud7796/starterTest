@@ -26,8 +26,7 @@ class IncreaseCount
      */
     public function handle(youtubeWachers $event)
     {
-
-        $this -> UpdateViews($event -> video);
+       $this -> UpdateViews($event -> video);
     }
     function UpdateViews($video){
 

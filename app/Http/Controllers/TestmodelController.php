@@ -63,7 +63,7 @@ class TestmodelController extends Controller
 
     public function index()
     {
-        $offers = Offer::selection()->get();
+        $offers = Offer::selection()->limit(10)->get();
         return view('offers.index', compact('offers'));
     }
 

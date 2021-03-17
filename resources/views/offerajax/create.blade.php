@@ -2,13 +2,14 @@
 
 @section('content')
     <div class="container">
+<div class="alert alert-success" id="msg-succ" style="display: none">تم الحفظ بنجاح يامعلم</div>
 
-    <form method="POST" class="needs-validation" novalidate action=""
+    <form method="POST" id="offerForm" class="needs-validation" novalidate action=""
           enctype="multipart/form-data">
         @csrf
 
         <div class="form-group">
-            <label for="exampleInputEmail1">chose Photo</label>
+            <label for="exampleInputEmail1">أختر صورة العرض</label>
             <input type="file" class="form-control" name="photo">
             @error('photo')
             <small class="form-text text-danger">{{$message}}</small>
@@ -66,20 +67,32 @@
 <script>
 
 
-    $(document).on('click', '#save_offer', function(){
+    $(document).on('click', '#save_offer', function(e){
+e.preventDefault();
 
-        $.ajaxSetup({
+/*        $.ajaxSetup({
             data: {
                 _token: $('meta[name="csrf-token"]').attr('content')
             }
-        });
+        });*/
 
-    $.ajax({
-       type: 'post',
-        url: "{{Route('ajax.offer.store')}}",
-        data:  {
-        },
+     var formData = new FormData($('#offerForm')[0]);
+       // var formData = new FormData($('#offerForm')[0]);
+
+        $.ajax({
+            type: 'post',
+            enctype: 'multipart/form-data',
+            url: "{{route('ajax.offer.store')}}",
+            data: formData,
+            processData: false,
+            contentType: false,
+            cache: false,
+
         success: function (data){
+                if(data.status == true){
+                    $('#msg-succ').show();
+                }
+
 
         }, error: function (reject){
 
