@@ -26,12 +26,16 @@ class IncreaseCount
      */
     public function handle(youtubeWachers $event)
     {
+        if(!session()-> has('first_vist')){
        $this -> UpdateViews($event -> video);
+        }else {
+            return false;
+        }
     }
     function UpdateViews($video){
 
         $video -> views = $video -> views + 1;
-
         $video ->save();
+        session() -> put('first_vist', $video ->id);
     }
 }

@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use App\Models\Phone;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -16,7 +17,7 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $fillable = [
-        'name', 'email','mobile', 'password','expire'
+        'id','name', 'email','mobile', 'password','expire','age'
     ];
 
     /**
@@ -42,5 +43,11 @@ class User extends Authenticatable implements MustVerifyEmail
     }
     public function scopeEmail($query){
         return $query -> pluck('email')->toArray();
+    }
+    public function ScopeSelection($query){
+        return $query -> select('id','name', 'email','mobile', 'password','expire','age');
+    }
+    public function phone(){
+        return $this -> hasOne(Phone::class, 'user_id');
     }
 }

@@ -1,5 +1,4 @@
 <?php
-
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AjaxController;
@@ -20,7 +19,6 @@ Auth::routes(['verify'=>true]);
 
 Route::get('/home', 'HomeController@index')->name('home')->middleware('verified');
 Route::get('/first_time', 'TestmodelController@first_time');
-Route::get('/youtube', 'TestmodelController@youtube');
 Route::get('/', function () {
     return view('welcome');
 });
@@ -46,6 +44,7 @@ Route::group(['prefix'=>'offers'], function(){
     Route::get('/delete/{id}', 'TestmodelController@delete')-> name('offers.delete');
 
 });
+    Route::get('/youtube', 'TestmodelController@youtube')-> middleware('auth');
 
 
 
@@ -64,5 +63,32 @@ Route::group(['prefix'=>'offers-ajax'],function(){
 
 });
 ####### End AJAX ##############
+
+########### start Authentication && guards #########
+Route::group(['middleware'=> 'CheckAge','namespace'=> 'Auth'], function(){
+    Route::get('customauth', 'CustomAuthController@adult')-> name('adult');
+
+});
+Route::group(['prefix'=>'admin','namespace'=> 'Auth'],function (){
+
+Route::get('site', 'CustomAuthController@site')-> middleware('auth:web')-> name('site');
+Route::get('admin', 'CustomAuthController@admin')-> middleware('auth:admin')-> name('admin');
+Route::get('login', 'CustomAuthController@adminlogin')->name('admin.login');
+Route::post('login', 'CustomAuthController@Checkadminlogin')->name('save.admin.login');
+
+});
+
+
+########### end Authentication && guards #########
+
+########### begin Relations #########
+Route::group(['prefix'=>'relation'], function(){
+    Route::get('one', 'OneRelationController@one');
+    Route::get('one-reverse', 'OneRelationController@onereverse');
+    Route::get('Elq-condition', 'OneRelationController@Elq_condition');
+
+
+});
+########### end Relations  #########h
 
 

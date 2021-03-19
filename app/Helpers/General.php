@@ -23,7 +23,7 @@ Trait General
     }*/
 }
 
-$file_extension = $request ->photo -> getClientOriginalExtension();
+/*$file_extension = $request ->photo -> getClientOriginalExtension();
 $file_name = time().'.'.$file_extension;
 $path = 'images/';
 $request -> photo -> move($path,$file_name);
@@ -31,10 +31,10 @@ $request -> photo -> move($path,$file_name);
 user::create([
     'photo' => $filepath
 
-]);
+]);*/
 
 
-
+/*
 $file_extension = $request ->photo -> getClientOriginalExtension();
 $file_name = time().'.'.$file_extension;
 $path = 'images/';
@@ -45,6 +45,6 @@ user::update([
 
 ]);
 
-}
+}*/
 
 //Test commit with router router

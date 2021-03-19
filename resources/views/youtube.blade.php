@@ -105,11 +105,10 @@
 
             <div class="content">
                 <div class="title m-b-md">
-
-                    Views of videos:
-                    @if('first_time')
-                    ({{$video -> views}})
+                    @if('first_visit')
+                    Views of videos: ({{$video -> views}})
                         @endif
+
 
                 </div>
 

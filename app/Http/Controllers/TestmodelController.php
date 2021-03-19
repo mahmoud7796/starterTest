@@ -22,7 +22,7 @@ class TestmodelController extends Controller
      */
     public function __construct()
     {
-       // $this->middleware('auth');
+        $this->middleware('auth');
     }
 
 
@@ -101,22 +101,19 @@ class TestmodelController extends Controller
         return redirect()->route('offers.index')->with(['success' => 'تم الحذف']);
     }
 
-
-/*        public function first_time(Request $request){
+     public function first_time(Request $request){
         $session = $request->session();
         ($session->has('first_visit')) ? $session->put('first_visit', false) : $session->put('first_visit', true);
         return view('first_time', ['first_visit' => $session->get('first_visit')]);
-    }*/
+    }
 
 
 
     public function youtube(Request $request)
     {
         $video = video::first();
-       $event = event(new youtubeWachers($video));
-        $session = $request -> session();
-        ($session -> has('first_time')) ? $session-> put('first_visit', $event) : $session-> put('first_visit', false);
-        return view('youtube',['first_visit' => $session->get('first_visit')])->with('video', $video);
+        event(new youtubeWachers($video));
+       return view('youtube',compact('video'));
     }
 
 
