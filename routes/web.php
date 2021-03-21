@@ -86,6 +86,13 @@ Route::group(['prefix'=>'relation'], function(){
     Route::get('one', 'OneRelationController@one');
     Route::get('one-reverse', 'OneRelationController@onereverse');
     Route::get('Elq-condition', 'OneRelationController@Elq_condition');
+    Route::get('index', 'OneRelationController@index')-> name('hospital.index');
+    Route::get('indexD/{id}', 'OneRelationController@indexD')-> name('hospital.doctors');
+    Route::get('many', 'OneRelationController@many');
+    Route::get('hasD', 'OneRelationController@hasdoc');
+    Route::get('hasmale', 'OneRelationController@hasmale');
+    Route::get('delete/{id}', 'OneRelationController@delete')-> name('hospital.delete');
+
 
 
 });
