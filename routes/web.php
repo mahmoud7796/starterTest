@@ -93,9 +93,19 @@ Route::group(['prefix'=>'relation'], function(){
     Route::get('hasmale', 'OneRelationController@hasmale');
     Route::get('delete/{id}', 'OneRelationController@delete')-> name('hospital.delete');
 
-
-
 });
-########### end Relations  #########h
+########### end Relations  #########
+
+########### begin Many To Many Relations ############
+
+Route::get('doctor-service', 'OneRelationController@docserv')-> name('doctor.service');
+Route::get('service-doctor', 'OneRelationController@servdoc');
+Route::get('indexmany', 'OneRelationController@indexmany');
+Route::get('services/{id}', 'OneRelationController@services')-> name('doctors.services');
+Route::post('storedb', 'OneRelationController@storedb')-> name('doctors.storedb');
+
+
+########### end begin Many To Many Relations #########
+
 
 

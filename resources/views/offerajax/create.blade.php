@@ -11,49 +11,43 @@
         <div class="form-group">
             <label for="exampleInputEmail1">أختر صورة العرض</label>
             <input type="file" class="form-control" name="photo">
-            @error('photo')
-            <small class="form-text text-danger">{{$message}}</small>
-            @enderror
+            <small id="photo_error" class="form-text text-danger"></small>
         </div>
 
         <div class="form-group">
             <label for="Name">{{__('messages.create_name')}}</label>
             <input type="text" class="form-control" id="name" name="name_ar"  placeholder="Enter name">
-            @error('name_ar')
-            <span class="text-danger">{{$message}}</span>
-            @enderror
+            <small id="name_ar_error" class="form-text text-danger"></small>
+
 
         </div>
 
         <div class="form-group">
             <label for="Name">{{__('messages.create_name_en')}}</label>
             <input type="text" class="form-control" id="name" name="name_en"  placeholder="Enter name">
-            @error('name_en')
-            <span class="text-danger">{{$message}}</span>
-            @enderror
+            <small id="name_en_error" class="form-text text-danger"></small>
+
 
         </div>
         <div class="form-group">
             <label for="price">{{__('messages.create_price')}}</label>
             <input type="text" class="form-control" id="price" name="price" placeholder="price here">
-            @error('price')
-            <span class="text-danger">{{$message}}</span>
-            @enderror
+            <small id="price_error" class="form-text text-danger"></small>
+
         </div>
         <div class="form-group">
             <label for="details">{{__('messages.create_details')}}</label>
             <input type="text" class="form-control" id="details" name="details_ar" placeholder="details here">
-            @error('details_ar')
-            <span class="text-danger">{{$message}}</span>
-            @enderror
+            <small id="details_ar_error" class="form-text text-danger"></small>
+
         </div>
 
         <div class="form-group">
             <label for="details">{{__('messages.create_details_en')}}</label>
             <input type="text" class="form-control" id="details" name="details_en" placeholder="details here">
-            @error('details_en')
-            <span class="text-danger">{{$message}}</span>
-            @enderror
+
+            <small id="details_en_error" class="form-text text-danger"></small>
+
         </div>
 
         <button type="button" id="save_offer" class="btn btn-primary">create</button>
@@ -76,7 +70,15 @@ e.preventDefault();
             }
         });*/
 
-     var formData = new FormData($('#offerForm')[0]);
+        $('#photo_error').text('');
+        $('#name_ar_error').text('');
+        $('#name_en_error').text('');
+        $('#price_error').text('');
+        $('#details_ar_error').text('');
+        $('#details_en_error').text('');
+
+
+        var formData = new FormData($('#offerForm')[0]);
        // var formData = new FormData($('#offerForm')[0]);
 
         $.ajax({
@@ -95,6 +97,10 @@ e.preventDefault();
 
 
         }, error: function (reject){
+                var response = $.parseJSON(reject.responseText);
+                $.each(response.errors, function(key, val){
+                    $("#" + key + "_error").text(val[0]);
+                });
 
         }
     });

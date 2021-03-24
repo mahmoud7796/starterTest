@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\Doctor;
 use App\Models\Hospital;
 use App\Models\Phone;
+use App\Models\ServiceModel;
 use App\User;
 use Illuminate\Http\Request;
+use PhpParser\Comment\Doc;
 
 class OneRelationController extends Controller
 {
@@ -88,6 +90,43 @@ $q -> select('name','hosiptal_id');
         $hospital -> delete();
         return redirect()-> route('hospital.index')-> with(['success'=> 'تم الحذف يمعلم']);
     }
+
+    public function docserv(){
+       $doctor = Doctor::with('services')-> find(4);
+       return $doctor -> services;
+
+    }
+
+    public function servdoc(){
+      return  $service = ServiceModel::with(['doctors'=> function($q){
+          $q-> select('doctors.id','name','title');
+      }])-> find(2);
+        //return $service -> doctors;
+    }
+    public function indexmany(){
+         $doctors = Doctor::whereHas('services')-> selection()-> get();
+        return view('hospital.doctor', compact('doctors'));
+
+    }
+    public function services($id){
+         $doctors = Doctor::find($id);
+         $services = $doctors -> services;
+         $allservices = ServiceModel::select('id','name')-> get();
+       // $alldoctors = Doctor::select('id','name')-> get();
+          $alldoctors[] = Doctor::find($id);
+
+        return view('hospital.service', compact('services','allservices','alldoctors'));
+
+    }
+    public function storedb(Request $request){
+        return $request;
+        $doctor = Doctor::find($request -> doctor_idd);
+
+        //$doctor -> services() -> sync($request -> services_id);
+        $doctor -> services() -> syncWithoutDetaching($request -> services_id);
+        return "success";
+    }
+
 
 
 }
