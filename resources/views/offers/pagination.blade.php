@@ -104,6 +104,7 @@
         <th scope="col">{{__('messages.create_price')}}</th>
         <th scope="col">{{__('messages.index_details')}}</th>
         <th scope="col">Photo</th>
+        <th scope="col">Status</th>
         <th scope="col">Actions</th>
     </tr>
     </thead>
@@ -115,6 +116,8 @@
         <td>{{$offer -> price}}</td>
         <td>{{$offer -> details}}</td>
         <td><img src="{{$offer -> photo}}" style="width: 100px;height: 100px;"></td>
+        <td>{{$offer -> status}}</td>
+
         <td>
             <div class="btn-group" role="group"
                  aria-label="Basic example">
@@ -137,6 +140,9 @@
 
     </tbody>
     </table>
+    </div>
+    <div class="d-flex justify-content-center">
+
     </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>

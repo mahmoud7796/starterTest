@@ -19,6 +19,10 @@ class Hospital extends Model
     public function doctors(){
         return $this-> hasMany(Doctor::class, 'hosiptal_id','id');
     }
+    public function countries(){
+        return $this-> belongsTo(country::class, 'country_id','id');
+    }
+
     protected static  function boot(){
         parent::boot();
         Hospital::observe(HospitalObserver::class);

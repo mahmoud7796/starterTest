@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\country;
 use App\Models\Doctor;
 use App\Models\Hospital;
+use App\Models\medical;
+use App\Models\patient;
 use App\Models\Phone;
 use App\Models\ServiceModel;
 use App\User;
@@ -50,7 +53,7 @@ return $phone;
     public function indexD($id)
     {
          $hopital = Hospital::with('doctors')->find($id);
-        $doctors =  $hopital -> doctors;
+         $doctors =  $hopital -> doctors;
         return view('hospital.doctors',compact('doctors'));
     }
 
@@ -119,12 +122,33 @@ $q -> select('name','hosiptal_id');
 
     }
     public function storedb(Request $request){
-        return $request;
+      //  return $request;
         $doctor = Doctor::find($request -> doctor_idd);
 
         //$doctor -> services() -> sync($request -> services_id);
         $doctor -> services() -> syncWithoutDetaching($request -> services_id);
         return "success";
+    }
+
+    public function onethr(){
+         $pdf =  patient::with('doctors')-> find(2);
+        return $pdf -> doctors;
+
+    }
+    public function through($id = 1){
+         $pdf =  patient::with('doctors')->find($id);
+            $doctors[] =  $pdf -> doctors;
+       return view('hospital.through', compact('doctors'));
+
+    }
+
+    public function throughmany(){
+        return $countries = country::with('doctors')->find(1);
+      //  return  $doctors = $countries -> doctors;
+
+       // return $countries = country::with('hospitals')->find(2);
+       // $doctors = $countries -> doctors;
+
     }
 
 

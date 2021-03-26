@@ -14,7 +14,7 @@ use App\Http\Controllers\AjaxController;
 */
 
 
-
+define('PAGINATION',3);
 Auth::routes(['verify'=>true]);
 
 Route::get('/home', 'HomeController@index')->name('home')->middleware('verified');
@@ -39,6 +39,7 @@ Route::group(['prefix'=>'offers'], function(){
     Route::get('create','TestmodelController@create')-> name('offers.create');
     Route::post('/store', 'TestmodelController@store')-> name('offers.store');
     Route::get('/index', 'TestmodelController@index')-> name('offers.index');
+    Route::get('/pagination', 'TestmodelController@pagination')-> name('offers.pagination');
     Route::get('/edit/{id}', 'TestmodelController@edit')-> name('offers.edit');
     Route::post('/update/{id}', 'TestmodelController@update')-> name('offers.update');
     Route::get('/delete/{id}', 'TestmodelController@delete')-> name('offers.delete');
@@ -106,6 +107,14 @@ Route::post('storedb', 'OneRelationController@storedb')-> name('doctors.storedb'
 
 
 ########### end begin Many To Many Relations #########
+
+########### Start One Through #########
+Route::get('onethr', 'OneRelationController@onethr');
+Route::get('through', 'OneRelationController@through')-> name('doctors.through');
+Route::get('throughmany', 'OneRelationController@throughmany')-> name('doctors.throughmany');
+
+########### end One Through ###########
+
 
 
 

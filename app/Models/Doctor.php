@@ -7,8 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Doctor extends Model
 {
     protected $table ="doctors";
-    protected $fillable =  ['id','name','title','hosiptal_id'];
-    protected $hidden = ['updated_at','created_at','hosiptal_id','pivot'];
+    protected $fillable =  ['id','name','country_id','title','hosiptal_id','medical_id'];
+    protected $hidden = ['updated_at','created_at','hosiptal_id','pivot','laravel_through_key','medical_id',];
 
 
     public function ScopeSelection($query){

@@ -63,8 +63,21 @@ class TestmodelController extends Controller
 
     public function index()
     {
-        $offers = Offer::selection()->limit(10)->get();
+     //  return $offers = Offer::selection()->limit(10)->get();
+      //  return view('offers.index', compact('offers'));
+         $offers = Offer::selection()->paginate(5); // pagination
         return view('offers.index', compact('offers'));
+
+
+    }
+    public function pagination()
+    {
+        //  return $offers = Offer::selection()->limit(10)->get();
+        //  return view('offers.index', compact('offers'));
+        $offers = Offer::selection()-> Active(); // pagination
+        return view('offers.pagination', compact('offers'));
+
+
     }
 
     public function edit($id)
