@@ -6,6 +6,7 @@ use App\Events\youtubeWachers;
 use App\Http\Requests\OffersRequest;
 use App\Models\Offer;
 use App\Models\video;
+use App\Scopes\globalScope;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -74,7 +75,7 @@ class TestmodelController extends Controller
     {
         //  return $offers = Offer::selection()->limit(10)->get();
         //  return view('offers.index', compact('offers'));
-        $offers = Offer::selection()-> Active(); // pagination
+        $offers = Offer::WithoutGlobalScope(globalScope::class)-> get(); // pagination
         return view('offers.pagination', compact('offers'));
 
 

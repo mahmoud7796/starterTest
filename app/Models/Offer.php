@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
+use App\Scopes\globalScope;
 use Illuminate\Database\Eloquent\Model;
 use LaravelLocalization;
+use phpDocumentor\Reflection\Types\Parent_;
 
 class Offer extends Model
 {
@@ -31,6 +33,12 @@ class Offer extends Model
 
       return  ($val!==null) ? asset($val) : "";
 
+    }
+
+    protected static function boot()
+    {
+        parent::boot();
+        static::addGlobalScope(new globalScope());
     }
 
 //test
