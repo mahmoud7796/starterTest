@@ -43,14 +43,14 @@ class AjaxController extends Controller
 
         ]);
         if($offer)
-        return response() -> json([
+        return response()-> json([
            'status' => true,
-           'msg' => 'تم الحفظ يامعلم',
+           'msg' => 'تم الحفظ',
         ]);
         else
             return response() -> json([
                 'status' => false,
-                'msg' => 'فشل البتنجان',
+                'msg' => 'لقد حدث خطأ يرجى المحاولة لاحقا',
             ]);
 
     }
@@ -62,13 +62,13 @@ class AjaxController extends Controller
         if($offers)
             return response() -> json([
                 'status' => true,
-                'msg' => 'تم الحفظ يامعلم',
+                'msg' => 'تم الحفظ ',
                 'id' => $request -> id,
             ]);
         else
             return response() -> json([
                 'status' => false,
-                'msg' => 'فشل البتنجان',
+                'msg' => 'لقد حدث خطأ يرجى المحاولة لاحقا',
             ]);
 
     }
@@ -79,7 +79,7 @@ class AjaxController extends Controller
         if(!$offers)
         return response() -> json([
             'status' => false,
-            'msg' => 'فشل البتنجان',
+            'msg' => 'لقد حدث خطأ يرجى المحاولة لاحقا',
         ]);
         $offers = Offer::selection2()->find($id);
         return view('offerajax.edit', compact('offers'));
@@ -93,7 +93,7 @@ class AjaxController extends Controller
         if(!$offer)
             return response() -> json([
                 'status' => false,
-                'msg' => 'فشل البتنجان',
+                'msg' => 'لقد حدث خطأ يرجى المحاولة لاحقا',
             ]);
 
       //  $file_name = $this->saveImage($request->file('photo'), 'images/offers');
@@ -116,7 +116,7 @@ class AjaxController extends Controller
         if($offer)
             return response() -> json([
                 'status' => true,
-                'msg' => 'تم الحفظ يامعلم',
+                'msg' => 'تم الحفظ ',
                 'id' => $request -> id,
             ]);
 
