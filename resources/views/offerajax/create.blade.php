@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container">
-<div class="alert alert-success" id="msg-succ" style="display: none">تم الحفظ بنجاح يامعلم</div>
+<div class="alert alert-success" id="msg-succ" style="display: none">تم الحفظ بنجاح </div>
 
     <form method="POST" id="offerForm" class="needs-validation" novalidate action=""
           enctype="multipart/form-data">

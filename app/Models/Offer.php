@@ -34,12 +34,22 @@ class Offer extends Model
       return  ($val!==null) ? asset($val) : "";
 
     }
+    public function getStatusAttribute($val){
+        return ($val == 1) ? 'Active':'Deactive';
+
+    }
+
+    public function setNameEnAttribute($val){
+        return $this -> attributes['name_en'] = strtoupper($val);
+
+    }
 
     protected static function boot()
     {
         parent::boot();
         static::addGlobalScope(new globalScope());
     }
+
 
 //test
 }

@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <div class="alert alert-success" id="msg-succ" style="display: none">تم الحفظ بنجاح يامعلم</div>
+    <div class="alert alert-success" id="msg-succ" style="display: none">تم الحفظ بنجاح</div>
     <table class="table">
         <thead>
         <tr>

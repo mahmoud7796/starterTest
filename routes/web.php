@@ -14,7 +14,7 @@ use App\Http\Controllers\AjaxController;
 */
 
 
-define('PAGINATION',3);
+/*define('PAGINATION',3);*/
 Auth::routes(['verify'=>true]);
 
 Route::get('/home', 'HomeController@index')->name('home')->middleware('verified');
@@ -24,8 +24,8 @@ Route::get('/', function () {
 });
 
 
-/*Route::get('/redirect/{service}','SocialiteController@redirect');
-Route::get('/callback/{service}','SocialiteController@callback');*/
+Route::get('/redirect/{service}','socialitecontroller@redirect');
+Route::get('/callback/{service}','SocialiteController@callback');
 
 
 Route::get('/home', 'HomeController@index')->name('home');
@@ -104,6 +104,7 @@ Route::get('service-doctor', 'OneRelationController@servdoc');
 Route::get('indexmany', 'OneRelationController@indexmany');
 Route::get('services/{id}', 'OneRelationController@services')-> name('doctors.services');
 Route::post('storedb', 'OneRelationController@storedb')-> name('doctors.storedb');
+Route::get('gender', 'OneRelationController@gender')-> name('doctors.gender');
 
 
 ########### end begin Many To Many Relations #########

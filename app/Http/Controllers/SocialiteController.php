@@ -8,7 +8,7 @@ use Laravel\Socialite\Facades\Socialite;
 
 class SocialiteController extends Controller
 {
-    public function redirect($service){
+    public function Redirect($service){
         return Socialite::driver($service)->redirect();
 
     }
@@ -16,12 +16,13 @@ class SocialiteController extends Controller
 
         $user = Socialite::with($service)->user();
           return $user_data = response()->json($user);
+
+          //to get Users data and save into DB
      /* $get_users_data =  $user->getId();
         $user->getNickname();
         $user->getName();
         $user->getEmail();
         $user->getAvatar();*/
-
 
     }
 

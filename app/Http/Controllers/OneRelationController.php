@@ -80,11 +80,23 @@ $q -> select('name','hosiptal_id');
 
     }
     public function hasmale(){
-         return  $doctors = Hospital::with('doctors')->wheredoesntHave('doctors', function($q){
-            $q -> where('gender',1);
+          $hospital = Hospital::with(['doctors'=> function($q){
+              $q -> select('id','hosiptal_id');
+          }])->get()->find(2);
+           $doctors =  $hospital -> doctors;
 
-        })->get();
+          if(isset($doctors) && $doctors->count()>0){
+              foreach($doctors as $doctor)
+              Doctor::create([
+                  'name' => 'name',
+                  'title' => 'title',
+                  'gender' => 2,
+                  'hosiptal_id' => $doctor ->id,
+                  'medical_id' => 5,
 
+              ]);
+          }
+          return 'success';
     }
     public function delete($id){
           $hospital = Hospital::find($id);
@@ -95,9 +107,10 @@ $q -> select('name','hosiptal_id');
     }
 
     public function docserv(){
-       $doctor = Doctor::with('services')-> find(4);
-       return $doctor -> services;
-
+          $doctor = Doctor::with(['services' => function($q){
+           $q -> select('service_id','name');
+        }])-> find(1);
+         return $doctor -> services;
     }
 
     public function servdoc(){
@@ -106,6 +119,7 @@ $q -> select('name','hosiptal_id');
       }])-> find(2);
         //return $service -> doctors;
     }
+
     public function indexmany(){
          $doctors = Doctor::whereHas('services')-> selection()-> get();
         return view('hospital.doctor', compact('doctors'));
@@ -151,6 +165,8 @@ $q -> select('name','hosiptal_id');
 
     }
 
+    public function gender(){
+        return $doctors = Doctor::selection()-> get();
 
-
+    }
 }

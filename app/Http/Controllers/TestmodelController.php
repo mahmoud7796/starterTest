@@ -66,7 +66,7 @@ class TestmodelController extends Controller
     {
      //  return $offers = Offer::selection()->limit(10)->get();
       //  return view('offers.index', compact('offers'));
-         $offers = Offer::selection()->paginate(5); // pagination
+         $offers = Offer::selection()->paginate(10); // pagination
         return view('offers.index', compact('offers'));
 
 
@@ -75,7 +75,7 @@ class TestmodelController extends Controller
     {
         //  return $offers = Offer::selection()->limit(10)->get();
         //  return view('offers.index', compact('offers'));
-        $offers = Offer::WithoutGlobalScope(globalScope::class)-> get(); // pagination
+        $offers = Offer::WithoutGlobalScope(globalScope::class)->where('status',1)-> get(); // pagination
         return view('offers.pagination', compact('offers'));
 
 

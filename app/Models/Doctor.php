@@ -7,12 +7,16 @@ use Illuminate\Database\Eloquent\Model;
 class Doctor extends Model
 {
     protected $table ="doctors";
-    protected $fillable =  ['id','name','country_id','title','hosiptal_id','medical_id'];
+    protected $fillable =  ['id','name','country_id','title','hosiptal_id','gender','medical_id'];
     protected $hidden = ['updated_at','created_at','hosiptal_id','pivot','laravel_through_key','medical_id',];
 
 
     public function ScopeSelection($query){
-      return $query -> select('id','name','title');
+      return $query -> select('id','name','title','gender');
+    }
+    public function getGenderAttribute($val){
+        return ($val == 1) ? 'Male':'Female';
+
     }
 
     public function hospital(){
@@ -21,5 +25,6 @@ class Doctor extends Model
     public function services(){
         return $this-> belongsToMany(ServiceModel::class, 'doctors_services', 'doctor_id','service_id','id','id');
     }
+
 
 }
